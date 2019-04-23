@@ -1,10 +1,11 @@
 pipeline {
-  agent { label 'nodejs-app' }
+  agent none
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
   stages {
+    agent { label 'nodejs-app' }
     stage('Test') {
       steps {
         checkout scm
@@ -21,6 +22,7 @@ pipeline {
       }
       steps {
         echo "TODO - build and push image"
+        sh 'java -version'
       }
     }
   }
